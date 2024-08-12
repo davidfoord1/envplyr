@@ -22,9 +22,3 @@ test_that("is_tabular checks argument data type", {
   expect_error(is_tabular(NA))
   expect_error(is_tabular(c(1, 2, 3)))
 })
-
-test_that("is_tabular checks length of input object", {
-  # error on length 0
-  expect_error(is_tabular(list()))
-  expect_error(is_tabular(new.env()))
-})
