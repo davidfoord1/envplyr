@@ -11,10 +11,21 @@ test_that("as.data.frame converts environment to data.frame", {
 
   expect_true(class(iris_df) == "data.frame")
 
-  env_to_test <- new.env()
-  env_to_test[["character"]] <- letters[1:3]
-  env_to_test[["numeric"]] <- 1:3
+  even_env <- new.env()
+  even_env[["character"]] <- letters[1:3]
+  even_env[["numeric"]] <- 1:3
 
-  df_to_test <- as.data.frame(env_to_test)
-  expect_true(class(df_to_test) == "data.frame")
+  even_df <- as.data.frame(even_env)
+  expect_true(class(even_df) == "data.frame")
+
+  # empty env
+  expect_true(class(as.data.frame(new.env())) == "data.frame")
+})
+
+test_that("as.data.frame errors on non tabular enviroments", {
+  uneven_env <- new.env()
+  uneven_env[["character"]] <- letters[1:3]
+  uneven_env[["numeric"]] <- 1:4
+
+  expect_error(as.data.frame(uneven_env))
 })
