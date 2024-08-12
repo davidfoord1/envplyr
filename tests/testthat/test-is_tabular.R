@@ -16,3 +16,9 @@ test_that("is_tabular returns the correct value", {
 
   expect_false(is_tabular(uneven_env))
 })
+
+test_that("is_tabular checks argument data type", {
+  expect_error(is_tabular(letters))
+  expect_error(is_tabular(NA))
+  expect_error(is_tabular(c(1, 2, 3)))
+})
