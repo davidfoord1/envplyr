@@ -8,6 +8,9 @@
 #' @return Logical. Whether all vectors in `x` have the same length.
 is_tabular <- function(x) {
   stopifnot(is.list(x) | is.environment(x))
+  stopifnot(length(x) > 1)
+
+  if (length(x) == 1) return(TRUE)
 
   vec_lengths <- vapply(x, length, numeric(1))
 
