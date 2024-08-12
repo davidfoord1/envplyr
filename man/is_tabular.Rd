@@ -16,3 +16,14 @@ Logical. Whether all vectors in \code{x} have the same length.
 Check whether every vector in a \link{list} or \link{environment} has the same
 \code{\link[=length]{length()}}.
 }
+\examples{
+# TRUE
+is_tabular(iris)
+is_tabular(as.environment(iris))
+is_tabular(new.env())
+is_tabular(as.environment(list(chr = letters, num = 1:26)))
+
+# FALSE
+is_tabular(list(letters, 1:3))
+is_tabular(as.environment(list(chr = letters, num = 1:3)))
+}
