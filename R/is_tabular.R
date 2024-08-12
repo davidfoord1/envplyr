@@ -7,7 +7,9 @@
 #'
 #' @return Logical. Whether all vectors in `x` have the same length.
 #'
-#' @examples
+#'
+#' @section Examples (internal to envplyr):
+#' ```r
 #' # TRUE
 #' is_tabular(iris)
 #' is_tabular(as.environment(iris))
@@ -17,6 +19,7 @@
 #' # FALSE
 #' is_tabular(list(letters, 1:3))
 #' is_tabular(as.environment(list(chr = letters, num = 1:3)))
+#' ```
 is_tabular <- function(x) {
   stopifnot(is.list(x) | is.environment(x))
 

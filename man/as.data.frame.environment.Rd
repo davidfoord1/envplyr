@@ -18,5 +18,5 @@ Coerce an environment to a data.frame
 \examples{
 iris_env <- as.environment(iris)
 iris_df <- as.data.frame(iris_env)
-identical(iris, mtcars_df)
+identical(iris, iris_df)
 }
