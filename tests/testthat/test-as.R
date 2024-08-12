@@ -29,3 +29,31 @@ test_that("as.data.frame errors on non tabular enviroments", {
 
   expect_error(as.data.frame(uneven_env))
 })
+
+# as_tibble.environment ---------------------------------------------------
+
+test_that("as.data.frame converts environment to data.frame", {
+  target_class <- c("tbl_df", "tbl", "data.frame")
+
+  mtcars_env <- as.environment(mtcars)
+  mtcars_tbl <- as_tibble(mtcars_env)
+
+  expect_true(all(class(mtcars_tbl) == target_class))
+
+  iris_env <- as.environment(iris)
+  iris_tbl <- as_tibble(iris)
+
+  expect_true(all(class(iris_tbl) == target_class))
+
+  even_env <- new.env()
+  even_env[["character"]] <- letters[1:3]
+  even_env[["numeric"]] <- 1:3
+
+  even_tbl <- as_tibble(even_env)
+  expect_true(all(class(even_tbl) == target_class))
+
+  # empty env
+  expect_true(all(class(as_tibble(new.env())) == target_class))
+})
+
+
