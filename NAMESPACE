@@ -2,4 +2,7 @@
 
 S3method(as.data.frame,environment)
 S3method(as_tibble,environment)
+S3method(filter,environment)
+import(rlang)
+importFrom(dplyr,filter)
 importFrom(tibble,as_tibble)
