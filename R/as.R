@@ -14,7 +14,7 @@
 as.data.frame.environment <- function(x) {
   stopifnot(is_tabular(x))
 
-  env_list <- mget(ls(x, all.names = TRUE), envir = x)
+  env_list <- mget(names(x), envir = x)
 
   as.data.frame(env_list)
 }
@@ -36,7 +36,7 @@ as.data.frame.environment <- function(x) {
 as_tibble.environment <- function(x) {
   stopifnot(is_tabular(x))
 
-  env_list <- mget(ls(x, all.names = TRUE), envir = x)
+  env_list <- mget(names(x), envir = x)
 
-  tibble::as_tibble(env_list)
+  as_tibble(env_list)
 }
