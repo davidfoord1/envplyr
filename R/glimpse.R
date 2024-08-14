@@ -39,6 +39,6 @@ glimpse.environment <- function(x, width = NULL, ...) {
     cli::cat_line("Objects: ", length(x))
   }
 
-  utils::str(x)
+  cli::cat_line(cli::col_br_blue(format(x)))
   invisible(x)
 }
