@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# envplyr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+A personal learning project for manipulating tabular R environments using the
+dplyr interface.
+
+## Installation
+
+You can install the development version of envplyr from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("davidfoord1/envplyr")
+```
+
+## Example
+
+```{r example, message=FALSE}
+library(dplyr)
+library(envplyr)
+```
+
+```{r starwars, eval=FALSE}
+starwars |> 
+  as.environment() |> 
+  filter(species == "Droid") |> 
+  glimpse()
+```
+
+```{r echo=FALSE}
+filtered_starwars <- starwars |> 
+  as.environment() |> 
+  filter(species == "Droid") 
+
+capture.output(glimpse(filtered_starwars)) |> 
+  cli::ansi_strip() |> 
+  cat(sep = "\n")
+```
+
