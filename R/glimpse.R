@@ -20,13 +20,11 @@ glimpse.environment <- function(x, width = NULL, ...) {
     cli::cat_line("Rows: ", length(first_col))
     cli::cat_line("Columns: ", length(x))
 
-    obj_types <- unlist(eapply(x, pillar::new_pillar_type))
-    obj_types <- cli::col_grey(cli::style_italic(paste0("<", obj_types, ">")))
+    obj_types <- lapply(eapply(x, pillar::new_pillar_type), format)
     obj_names <- format(pillar::new_pillar_title(names(x)))
     obj_names <- paste("$", pillar::align(obj_names), obj_types)
 
 
-    # data_width <- width - pillar::get_extent(obj_names) - 1
     formatted <- eapply(x, paste, collapse = ", ") |> as.character()
 
     truncated <- paste0(
