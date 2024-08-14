@@ -8,7 +8,7 @@
 #'
 #' @return
 #' Original `x` is (invisibly) returned
-glimpse.environment <- function(x, width = NULL) {
+glimpse.environment <- function(x, width = NULL, ...) {
   if (!is.null(width) && !is.finite(width)) {
     cli::cli_abort("`width` must be finite.")
   }

@@ -4,7 +4,7 @@
 \alias{glimpse.environment}
 \title{Get a glimpse of your data}
 \usage{
-\method{glimpse}{environment}(x, width = NULL)
+\method{glimpse}{environment}(x, width = NULL, ...)
 }
 \arguments{
 \item{x}{An R environment}
@@ -12,6 +12,8 @@
 \item{width}{Width of output: defaults to the setting of the
 \code{width} \link[pillar:pillar_options]{option} (if finite)
 or the width of the console.}
+
+\item{...}{Unused, for extensibility.}
 }
 \value{
 Original \code{x} is (invisibly) returned
