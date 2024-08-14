@@ -16,19 +16,29 @@ glimpse.environment <- function(x, width = NULL, ...) {
   if (is.null(width)) width <- getOption("width")
 
   if (is_tabular(x)) {
-    first_col <- x[[names(x)[[1]]]]
-    cli::cat_line("Rows: ", length(first_col))
+    first_obj <- x[[names(x)[[1]]]]
+    cli::cat_line("Rows: ", length(first_obj))
     cli::cat_line("Columns: ", length(x))
 
-    obj_types <- lapply(eapply(x, pillar::new_pillar_type), format)
+    obj_types <- lapply(eapply(x, pillar::new_pillar_type, all.names = TRUE), format)
     obj_names <- format(pillar::new_pillar_title(names(x)))
     obj_names <- paste("$", pillar::align(obj_names), obj_types)
 
+    obj_contents <- eapply(
+      x,
+      \(obj) {
+        contents <- format(obj)
+        if (!is.null(names(obj))) {
+          contents <- names(obj)
+        }
 
-    formatted <- eapply(x, paste, collapse = ", ") |> as.character()
+        paste(contents, collapse = ", ")
+      },
+      all.names = TRUE
+    )
 
     truncated <- paste0(
-      substr(formatted, 1, width - nchar(obj_names) - 3),
+      substr(obj_contents, 1, width - nchar(obj_names) - 3),
       "..."
     )
 
