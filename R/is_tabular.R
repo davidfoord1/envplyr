@@ -23,7 +23,10 @@
 is_tabular <- function(x) {
   stopifnot(is.list(x) | is.environment(x))
 
-  if (length(x) %in% c(0, 1)) return(TRUE)
+  # exclude hidden objects
+  obj_names <- names(x)[!startsWith(names(x), ".")]
+
+  if (length(obj_names) %in% c(0, 1)) return(TRUE)
 
   vec_lengths <- eapply(x, length)
 
