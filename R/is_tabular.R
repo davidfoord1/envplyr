@@ -25,9 +25,9 @@ is_tabular <- function(x) {
 
   if (length(x) %in% c(0, 1)) return(TRUE)
 
-  vec_lengths <- vapply(x, length, numeric(1))
+  vec_lengths <- eapply(x, length)
 
-  first_length <- vec_lengths[1]
+  first_length <- vec_lengths[[1]]
 
   all(first_length == vec_lengths[-1])
 }
