@@ -15,6 +15,8 @@ glimpse.environment <- function(x, width = NULL, ...) {
 
   if (is.null(width)) width <- getOption("width")
 
+  cli::cat_line(cli::col_br_blue(format(x)))
+
   if (is_tabular(x)) {
     first_obj <- x[[names(x)[[1]]]]
     cli::cat_line("Rows: ", length(first_obj))
@@ -55,6 +57,5 @@ glimpse.environment <- function(x, width = NULL, ...) {
 
   cli::cat_line(obj_names, " ", truncated)
 
-  cli::cat_line(cli::col_br_blue(format(x)))
   invisible(x)
 }
